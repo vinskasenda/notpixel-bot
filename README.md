@@ -15,11 +15,11 @@
 
 1. clone project repo
    ```
-   git clone https://github.com/Widiskel/not-pixel-bot
+   git clone https://github.com/vinskasenda/notpixel-bot.git
    ```
    and cd to project dir
    ```
-   cd not-pixel-bot
+   cd notpixel-bot
    ```
 2. Run
    ```
@@ -58,11 +58,11 @@
 1. Open your `Command Prompt` or `Power Shell`.
 2. Clone project repo
    ```
-   git clone https://github.com/Widiskel/not-pixel-bot
+   git clone https://github.com/vinskasenda/notpixel-bot.git
    ```
    and cd to project dir
    ```
-   cd not-pixel-bot
+   cd notpixel-bot
    ```
 3. Run
    ```
