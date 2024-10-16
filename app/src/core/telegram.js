@@ -25,7 +25,7 @@ export class Telegram {
   }
   async ["onBoarding"]() {
     try {
-      let _0x2474a7 = "Welcome to Bot \nBy : Widiskel \n \nLets getting started.\n \nYour Session List:\n";
+      let _0x2474a7 = "Welcome to Bot \nBy : INSIDERS \n \nLets getting started.\n \nYour Session List:\n";
       const _0x527436 = Helper.getSession("accounts");
       if (_0x527436.length == 0x0) {
         _0x2474a7 += "<empty>";
