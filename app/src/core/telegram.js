@@ -1,8 +1,8 @@
-import a3_0x5f19b6 from 'input';
+import a3_0x136501 from 'input';
 import { Helper } from '../utils/helper.js';
 import { Api, TelegramClient } from 'telegram';
 import { StoreSession } from 'telegram/sessions/StoreSession.js';
-import a3_0x319d38 from '../utils/logger.js';
+import a3_0x4b8a64 from '../utils/logger.js';
 import { FloodWaitError } from 'telegram/errors/RPCErrorList.js';
 import { Config } from '../../config/config.js';
 import { HttpsProxyAgent } from 'https-proxy-agent';
@@ -10,47 +10,47 @@ import { LogLevel } from 'telegram/extensions/Logger.js';
 export class Telegram {
   ["storeSession"];
   constructor() {
-    this.accountName = 'accounts';
+    this.accountName = "accounts";
     this.url = "https://image.notpx.app/";
     this.bot = "notpx_bot";
   }
   async ["init"]() {
     try {
       await this.onBoarding();
-    } catch (_0x481549) {
-      console.log(_0x481549);
-      a3_0x319d38.error('' + JSON.stringify(_0x481549));
-      throw _0x481549;
+    } catch (_0x1f3d91) {
+      console.log(_0x1f3d91);
+      a3_0x4b8a64.error('' + JSON.stringify(_0x1f3d91));
+      throw _0x1f3d91;
     }
   }
   async ["onBoarding"]() {
     try {
-      let _0x380ffb = "Welcome to Bot \nBy : INSIDERS \n \nLets getting started.\n \nYour Session List:\n";
-      const _0x56b879 = Helper.getSession("accounts");
-      if (_0x56b879.length == 0x0) {
-        _0x380ffb += "<empty>";
+      let _0x2474a7 = "Welcome to Bot \nBy : Widiskel \n \nLets getting started.\n \nYour Session List:\n";
+      const _0x527436 = Helper.getSession("accounts");
+      if (_0x527436.length == 0x0) {
+        _0x2474a7 += "<empty>";
       } else {
-        for (const _0x2e2dbd of _0x56b879) {
-          _0x380ffb += "- " + _0x2e2dbd + "\n";
+        for (const _0x3e7db9 of _0x527436) {
+          _0x2474a7 += "- " + _0x3e7db9 + "\n";
         }
       }
-      _0x380ffb += "\n \nPlease Choose a menu: \n";
-      _0x380ffb += "\n \n1. Create Account \n2. Reset Account \n3. Start Bot\n4. Query modification\n \nInput your choice :";
-      const _0x3d4861 = await a3_0x5f19b6.text(_0x380ffb);
-      if (_0x3d4861 == 0x1) {
+      _0x2474a7 += "\n \nPlease Choose a menu: \n";
+      _0x2474a7 += "\n \n1. Create Account \n2. Reset Account \n3. Start Bot\n4. Query modification\n \nInput your choice :";
+      const _0x56fe32 = await a3_0x136501.text(_0x2474a7);
+      if (_0x56fe32 == 0x1) {
         await this.accountType();
       } else {
-        if (_0x3d4861 == 0x2) {
+        if (_0x56fe32 == 0x2) {
           Helper.resetAccounts();
           await Helper.delay(0xbb8);
           await this.onBoarding();
         } else {
-          if (_0x3d4861 == 0x3) {
-            if (Helper.getSession(this.accountName)?.["length"] == 0x0) {
+          if (_0x56fe32 == 0x3) {
+            if (Helper.getSession(this.accountName)?.['length'] == 0x0) {
               console.info("You don't have any Accounts, please create first");
               await this.onBoarding();
             }
-          } else if (_0x3d4861 == 0x4) {
+          } else if (_0x56fe32 == 0x4) {
             await this.queryModificaiton();
           } else {
             console.error("Invalid input, Please try again");
@@ -58,39 +58,39 @@ export class Telegram {
           }
         }
       }
-    } catch (_0x2844a0) {
-      throw _0x2844a0;
+    } catch (_0x2a5374) {
+      throw _0x2a5374;
     }
   }
   async ["queryModificaiton"]() {
     try {
-      const _0x465b12 = Helper.getSession('accounts');
-      const _0x283cbb = _0x465b12.filter(_0x40f027 => _0x40f027.includes('query'));
-      let _0x1102e9 = "Your Query Account List :\n \n";
-      for (const _0x53c1c6 of _0x283cbb) {
-        _0x1102e9 += _0x465b12.indexOf(_0x53c1c6) + 0x1 + ". " + _0x53c1c6 + "\n";
+      const _0x31429f = Helper.getSession('accounts');
+      const _0x100d7e = _0x31429f.filter(_0x3a3e00 => _0x3a3e00.includes("query"));
+      let _0x408177 = "Your Query Account List :\n \n";
+      for (const _0x57e2ab of _0x100d7e) {
+        _0x408177 += _0x31429f.indexOf(_0x57e2ab) + 0x1 + ". " + _0x57e2ab + "\n";
       }
-      if (_0x283cbb.length == 0x0) {
+      if (_0x100d7e.length == 0x0) {
         console.log("You dont have any Query Account.");
         await this.onBoarding();
       } else {
-        _0x1102e9 += "\n \nPlease Select Query Account for modification:";
+        _0x408177 += "\n \nPlease Select Query Account for modification:";
       }
-      const _0x544626 = await a3_0x5f19b6.text(_0x1102e9);
-      if (_0x283cbb[_0x544626 - 0x1] != undefined) {
-        const _0x5eb483 = _0x283cbb[_0x544626 - 0x1];
-        this.accountName = "accounts/" + _0x5eb483;
-        const _0x56714b = "Old Query : " + Helper.readQueryFile(this.accountName + '/query.txt') + "\n \nPlease Enter New Query ";
-        const _0x35f0f4 = await a3_0x5f19b6.text(_0x56714b);
-        await Helper.saveQueryFile(this.accountName, _0x35f0f4);
+      const _0x41fc84 = await a3_0x136501.text(_0x408177);
+      if (_0x100d7e[_0x41fc84 - 0x1] != undefined) {
+        const _0x25ca9 = _0x100d7e[_0x41fc84 - 0x1];
+        this.accountName = "accounts/" + _0x25ca9;
+        const _0x33be11 = "Old Query : " + Helper.readQueryFile(this.accountName + '/query.txt') + "\n \nPlease Enter New Query ";
+        const _0x3a16b9 = await a3_0x136501.text(_0x33be11);
+        await Helper.saveQueryFile(this.accountName, _0x3a16b9);
         await Helper.delay(0xbb8);
         await this.onBoarding();
       } else {
         console.error("Invalid input, Please try again");
         await this.queryModificaiton();
       }
-    } catch (_0x4f7596) {
-      throw _0x4f7596;
+    } catch (_0xa6ea2c) {
+      throw _0xa6ea2c;
     }
   }
   async ["sessionCreation"]() {
@@ -98,126 +98,126 @@ export class Telegram {
       if (Config.TELEGRAM_APP_ID == undefined || Config.TELEGRAM_APP_HASH == undefined) {
         throw new Error("Please configure your TELEGRAM_APP_ID and TELEGRAM_APP_HASH first");
       }
-      const _0x44d6f1 = Helper.getSession("accounts");
-      let _0x54ee47 = "Your Account List :\n \n";
-      for (const _0x1c2156 of _0x44d6f1) {
-        _0x54ee47 += _0x44d6f1.indexOf(_0x1c2156) + 0x1 + ". " + _0x1c2156 + "\n";
+      const _0x5c76ef = Helper.getSession("accounts");
+      let _0x2e6eba = "Your Account List :\n \n";
+      for (const _0x13b03f of _0x5c76ef) {
+        _0x2e6eba += _0x5c76ef.indexOf(_0x13b03f) + 0x1 + ". " + _0x13b03f + "\n";
       }
-      if (_0x44d6f1.length == 0x0) {
-        _0x54ee47 += "<empty> \n \nPlease enter Session Name :";
+      if (_0x5c76ef.length == 0x0) {
+        _0x2e6eba += "<empty> \n \nPlease enter Session Name :";
       } else {
-        _0x54ee47 += "\n \nYou already have sessions, cancel(CTRL+C) or create new Session :";
+        _0x2e6eba += "\n \nYou already have sessions, cancel(CTRL+C) or create new Session :";
       }
-      const _0x1564a3 = await a3_0x5f19b6.text(_0x54ee47);
-      this.accountName = Helper.createDir("sessions-" + _0x1564a3);
+      const _0xdc30f5 = await a3_0x136501.text(_0x2e6eba);
+      this.accountName = Helper.createDir('sessions-' + _0xdc30f5);
       await this.useSession(this.accountName);
       await this.disconnect();
-      a3_0x319d38.info("Session " + this.accountName + " - Created");
-      console.log("Session " + _0x1564a3 + " - Created, Please Restart The Bot Again");
+      a3_0x4b8a64.info("Session " + this.accountName + " - Created");
+      console.log("Session " + _0xdc30f5 + " - Created, Please Restart The Bot Again");
       this.storeSession.save();
       await Helper.delay(0xbb8);
       process.exit();
-    } catch (_0xdea6da) {
-      throw _0xdea6da;
+    } catch (_0x225612) {
+      throw _0x225612;
     }
   }
-  async ['queryCreation']() {
+  async ["queryCreation"]() {
     try {
-      const _0x35e7af = Helper.getSession('accounts');
-      let _0x35383e = "Your Account List :\n \n";
-      for (const _0x5611af of _0x35e7af) {
-        _0x35383e += _0x35e7af.indexOf(_0x5611af) + 0x1 + ". " + _0x5611af + "\n";
+      const _0x1d1971 = Helper.getSession("accounts");
+      let _0x1222a5 = "Your Account List :\n \n";
+      for (const _0x4ea0df of _0x1d1971) {
+        _0x1222a5 += _0x1d1971.indexOf(_0x4ea0df) + 0x1 + ". " + _0x4ea0df + "\n";
       }
-      if (_0x35e7af.length == 0x0) {
-        _0x35383e += "<empty> \n \nPlease enter Account Name :";
+      if (_0x1d1971.length == 0x0) {
+        _0x1222a5 += "<empty> \n \nPlease enter Account Name :";
       } else {
-        _0x35383e += "\n \nYou already have Account, cancel(CTRL+C) or create new Account :";
+        _0x1222a5 += "\n \nYou already have Account, cancel(CTRL+C) or create new Account :";
       }
-      const _0x39a0bc = await a3_0x5f19b6.text(_0x35383e);
-      this.accountName = Helper.createDir("query-" + _0x39a0bc);
-      const _0x20f94d = await a3_0x5f19b6.text("Please Enter Telegram Query : ");
-      await Helper.saveQueryFile(this.accountName, _0x20f94d);
-      a3_0x319d38.info("Query " + this.accountName + " - Created");
-      console.log("Query " + _0x39a0bc + " - Created, Please Restart The Bot Again");
+      const _0x5728b9 = await a3_0x136501.text(_0x1222a5);
+      this.accountName = Helper.createDir("query-" + _0x5728b9);
+      const _0x431c49 = await a3_0x136501.text("Please Enter Telegram Query : ");
+      await Helper.saveQueryFile(this.accountName, _0x431c49);
+      a3_0x4b8a64.info("Query " + this.accountName + " - Created");
+      console.log("Query " + _0x5728b9 + " - Created, Please Restart The Bot Again");
       await Helper.delay(0xbb8);
       process.exit();
-    } catch (_0x1bc3e1) {
-      throw _0x1bc3e1;
+    } catch (_0x419bb1) {
+      throw _0x419bb1;
     }
   }
-  async ["accountType"]() {
+  async ['accountType']() {
     try {
-      const _0x9e3e21 = Helper.getSession("accounts");
-      let _0x5edf66 = "Your Account List :\n \n";
-      if (_0x9e3e21.length > 0x0) {
-        for (const _0x4feaf1 of _0x9e3e21) {
-          _0x5edf66 += _0x9e3e21.indexOf(_0x4feaf1) + 0x1 + ". " + _0x4feaf1 + "\n";
+      const _0xe4acbf = Helper.getSession("accounts");
+      let _0x54a41d = "Your Account List :\n \n";
+      if (_0xe4acbf.length > 0x0) {
+        for (const _0x31d983 of _0xe4acbf) {
+          _0x54a41d += _0xe4acbf.indexOf(_0x31d983) + 0x1 + ". " + _0x31d983 + "\n";
         }
       } else {
-        _0x5edf66 += "<empty>\n";
+        _0x54a41d += "<empty>\n";
       }
-      _0x5edf66 += "\n \nAvailable Account Type: \n1. Session \n2. Query\n \nPlease Entery Your Choice : ";
-      const _0x2e2053 = await a3_0x5f19b6.text(_0x5edf66);
-      if (_0x2e2053 == 0x1) {
+      _0x54a41d += "\n \nAvailable Account Type: \n1. Session \n2. Query\n \nPlease Entery Your Choice : ";
+      const _0x574ed9 = await a3_0x136501.text(_0x54a41d);
+      if (_0x574ed9 == 0x1) {
         await this.sessionCreation();
-      } else if (_0x2e2053 == 0x2) {
+      } else if (_0x574ed9 == 0x2) {
         await this.queryCreation();
       } else {
         console.log("Invalid Input");
         await this.accountType();
       }
-    } catch (_0x8bb7a4) {
-      throw _0x8bb7a4;
+    } catch (_0x5dbb7a) {
+      throw _0x5dbb7a;
     }
   }
-  async ["useSession"](_0x367d92, _0x8ea0fe) {
+  async ["useSession"](_0x4f996c, _0x4bf18d) {
     try {
-      this.proxy = _0x8ea0fe;
-      const _0x5ab13a = {
+      this.proxy = _0x4bf18d;
+      const _0x456cdb = {
         'connectionRetries': 0x5
       };
       if (this.proxy) {
-        _0x5ab13a.agent = new HttpsProxyAgent(this.proxy);
+        _0x456cdb.agent = new HttpsProxyAgent(this.proxy);
       }
-      this.storeSession = new StoreSession(_0x367d92);
-      this.client = new TelegramClient(this.storeSession, Config.TELEGRAM_APP_ID, Config.TELEGRAM_APP_HASH, _0x5ab13a);
+      this.storeSession = new StoreSession(_0x4f996c);
+      this.client = new TelegramClient(this.storeSession, Config.TELEGRAM_APP_ID, Config.TELEGRAM_APP_HASH, _0x456cdb);
       this.client.setLogLevel(LogLevel.ERROR);
       this.storeSession.save();
       await this.client.start({
-        'phoneNumber': async () => await a3_0x5f19b6.text("Enter your Telegram Phone Number ?"),
-        'password': async () => await a3_0x5f19b6.text("Enter your Telegram Password?"),
-        'phoneCode': async () => await a3_0x5f19b6.text("Enter your Telegram Verification Code ?"),
-        'onError': _0x16c3cd => {
-          console.log(_0x16c3cd.message);
+        'phoneNumber': async () => await a3_0x136501.text("Enter your Telegram Phone Number ?"),
+        'password': async () => await a3_0x136501.text("Enter your Telegram Password?"),
+        'phoneCode': async () => await a3_0x136501.text("Enter your Telegram Verification Code ?"),
+        'onError': _0x9a546b => {
+          console.log(_0x9a546b.message);
         }
       });
-    } catch (_0x39c2dc) {
-      throw _0x39c2dc;
+    } catch (_0x49e592) {
+      throw _0x49e592;
     }
   }
-  async ["resolvePeer"](_0x310460) {
+  async ["resolvePeer"](_0x45a35a) {
     try {
-      a3_0x319d38.info("Session " + this.session + " - Resolving Peer");
+      a3_0x4b8a64.info("Session " + this.session + " - Resolving Peer");
       while (this.peer == undefined) {
         try {
           this.peer = await this.client.getEntity(this.bot);
           break;
-        } catch (_0x4ddd56) {
-          if (_0x4ddd56 instanceof FloodWaitError) {
-            const _0x897b70 = _0x4ddd56.seconds;
-            a3_0x319d38.warn(this.client.session.serverAddress + " | FloodWait " + _0x4ddd56);
-            a3_0x319d38.info(this.client.session.serverAddress + " | Sleep " + _0x897b70 + 's');
-            await Helper.delay(_0x897b70 * 0x3e8, _0x310460, this.client.session.serverAddress + " | FloodWait " + _0x4ddd56);
+        } catch (_0x39e39a) {
+          if (_0x39e39a instanceof FloodWaitError) {
+            const _0x3ecb45 = _0x39e39a.seconds;
+            a3_0x4b8a64.warn(this.client.session.serverAddress + " | FloodWait " + _0x39e39a);
+            a3_0x4b8a64.info(this.client.session.serverAddress + " | Sleep " + _0x3ecb45 + 's');
+            await Helper.delay(_0x3ecb45 * 0x3e8, _0x45a35a, this.client.session.serverAddress + " | FloodWait " + _0x39e39a);
           } else {
-            throw _0x4ddd56;
+            throw _0x39e39a;
           }
         }
       }
-    } catch (_0x3fe6bd) {
-      throw _0x3fe6bd;
+    } catch (_0x24a1cc) {
+      throw _0x24a1cc;
     }
   }
-  async ["disconnect"]() {
+  async ['disconnect']() {
     await this.client.disconnect();
     await this.client.destroy();
     this.peer = undefined;
@@ -225,18 +225,18 @@ export class Telegram {
   }
   async ["initWebView"]() {
     try {
-      const _0x39dd61 = await this.client.invoke(new Api.messages.RequestWebView({
+      const _0x1f8541 = await this.client.invoke(new Api.messages.RequestWebView({
         'peer': this.peer,
         'bot': this.peer,
         'fromBotMenu': true,
         'url': this.url,
-        'platform': 'android'
+        'platform': "android"
       }));
-      a3_0x319d38.info("Session " + this.session + " - Webview Connected");
-      const _0x4539f1 = _0x39dd61.url;
-      return Helper.getTelegramQuery(_0x4539f1, 0x3);
-    } catch (_0x507a1a) {
-      throw _0x507a1a;
+      a3_0x4b8a64.info("Session " + this.session + " - Webview Connected");
+      const _0x4d6cde = _0x1f8541.url;
+      return Helper.getTelegramQuery(_0x4d6cde, 0x3);
+    } catch (_0x521b75) {
+      throw _0x521b75;
     }
   }
 }
